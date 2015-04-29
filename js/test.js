@@ -446,7 +446,7 @@ var Project = function(main, project) {
 	$(".project .addUserLink").click(othis.addUserLinkClick);
 	
 	$(".project .checkinButton").click(othis.showCheckinPopup);
-	$(".project .addServiceButton").click(othis.a ddServiceClick);
+	$(".project .addServiceButton").click(othis.addServiceClick);
 	$(".project .addSubProjectButton").click(othis.addSubProjectClick);
 
 	this.newLogAction = function(uuid, logAction, serviceIdentifier, profileIdentifier, token, apiUrl){

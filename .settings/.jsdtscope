@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="deploy/test.bimvie.ws"/>
+	<classpathentry excluding="bimsurfer/lib/scenejs/|bimsurfer/lib/jquery-ui-1.10.3.custom/development-bundle/ui/minified/|bimsurfer/api/Types/Light/|bimsurfer/js/|bimsurfer/lib/scenejs/plugins/lib/|bimsurfer/api/|bimsurfer/lib/jquery-ui-1.10.3.custom/development-bundle/ui/i18n/|bimsurfer/lib/jquery-ui-1.10.3.custom/development-bundle/demos/datepicker/|plugins/|bimsurfer/lib/jquery-ui-1.10.3.custom/development-bundle/ui/|bimsurfer/lib/jquery-ui-1.10.3.custom/development-bundle/external/|bimsurfer/lib/|bimsurfer/api/Control/|bimsurfer/lib/scenejs/plugins/node/canvas/|bimsurfer/lib/jquery-ui-1.10.3.custom/development-bundle/ui/minified/i18n/|bimsurfer/api/Types/|bimsurfer/lib/jquery-ui-1.10.3.custom/development-bundle/|bimsurfer/lib/jquery-ui-1.10.3.custom/js/|bimsurfer/lib/jquery-1.10.2/" kind="src" path="js"/>
+	<classpathentry excluding="Types/Light/|Control/|Types/" kind="src" path="js/bimsurfer/api"/>
+	<classpathentry kind="src" path="js/bimsurfer/api/Control"/>
+	<classpathentry excluding="Light/" kind="src" path="js/bimsurfer/api/Types"/>
+	<classpathentry kind="src" path="js/bimsurfer/api/Types/Light"/>
+	<classpathentry kind="src" path="js/bimsurfer/js"/>
+	<classpathentry excluding="scenejs/|jquery-ui-1.10.3.custom/development-bundle/ui/minified/|scenejs/plugins/lib/|jquery-ui-1.10.3.custom/development-bundle/ui/i18n/|jquery-ui-1.10.3.custom/development-bundle/demos/datepicker/|jquery-ui-1.10.3.custom/development-bundle/ui/|jquery-ui-1.10.3.custom/development-bundle/external/|scenejs/plugins/node/canvas/|jquery-ui-1.10.3.custom/development-bundle/ui/minified/i18n/|jquery-ui-1.10.3.custom/development-bundle/|jquery-ui-1.10.3.custom/js/|jquery-1.10.2/" kind="src" path="js/bimsurfer/lib"/>
+	<classpathentry kind="src" path="js/bimsurfer/lib/jquery-1.10.2"/>
+	<classpathentry excluding="ui/minified/|ui/i18n/|demos/datepicker/|ui/|external/|ui/minified/i18n/" kind="src" path="js/bimsurfer/lib/jquery-ui-1.10.3.custom/development-bundle"/>
+	<classpathentry kind="src" path="js/bimsurfer/lib/jquery-ui-1.10.3.custom/development-bundle/demos/datepicker"/>
+	<classpathentry kind="src" path="js/bimsurfer/lib/jquery-ui-1.10.3.custom/development-bundle/external"/>
+	<classpathentry excluding="minified/|i18n/|minified/i18n/" kind="src" path="js/bimsurfer/lib/jquery-ui-1.10.3.custom/development-bundle/ui"/>
+	<classpathentry kind="src" path="js/bimsurfer/lib/jquery-ui-1.10.3.custom/development-bundle/ui/i18n"/>
+	<classpathentry excluding="i18n/" kind="src" path="js/bimsurfer/lib/jquery-ui-1.10.3.custom/development-bundle/ui/minified"/>
+	<classpathentry kind="src" path="js/bimsurfer/lib/jquery-ui-1.10.3.custom/development-bundle/ui/minified/i18n"/>
+	<classpathentry kind="src" path="js/bimsurfer/lib/jquery-ui-1.10.3.custom/js"/>
+	<classpathentry excluding="plugins/lib/|plugins/node/canvas/" kind="src" path="js/bimsurfer/lib/scenejs"/>
+	<classpathentry kind="src" path="js/bimsurfer/lib/scenejs/plugins/lib"/>
+	<classpathentry kind="src" path="js/bimsurfer/lib/scenejs/plugins/node/canvas"/>
+	<classpathentry kind="src" path="js/plugins"/>
+	<classpathentry kind="con" path="org.eclipse.wst.jsdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path=""/>
+</classpath>
