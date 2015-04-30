@@ -13,6 +13,7 @@
 		<div class="panel-body"></div>
 	</div>
 	<div id="viewport"></div>
+	<div id="sensor"></div>
 </div>
 <script>
 function ThreeDView(containerDiv, parent) {
@@ -22,6 +23,12 @@ function ThreeDView(containerDiv, parent) {
 	
 	this.load = function(){
 		var promise = new Promise();
+	    sensorObj = new Object();
+	    sensorObj.temperature = "70";
+	    sensorObj.humidity = "50%";
+	    sensorObj.noise = "10db";
+	    sensorObj.light = "bright"; 
+	    
 		o.viewer = new BIMSURFER.Viewer(Global.bimServerApi, 'viewport');
 		o.resize();
 		$(window).resize(o.resize);
@@ -57,7 +64,9 @@ function ThreeDView(containerDiv, parent) {
 		// todo use groupid		
 		var sceneJsNode = o.viewer.scene.findNode(id);
 		if (sceneJsNode != null) {
-			window.alert(id);
+			window.alert(id); 
+			$("#sensor").text($.param(sensorObj));
+		// TODO feed sensor data here
 			sceneJsNode.nodeId = sceneJsNode.id;
 			o.viewer.getControl("BIMSURFER.Control.ClickSelect").pick(sceneJsNode);
 		}
