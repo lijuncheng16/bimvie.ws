@@ -16,7 +16,7 @@ var Settings = {
 		};
 	},
 	getTitle: function(){
-		return "BIMvie.ws";
+		return "Bosch Smart Campus";
 	},
 	useBimSurfer: function(){
 		return true;

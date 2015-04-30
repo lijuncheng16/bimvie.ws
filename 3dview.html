@@ -26,6 +26,9 @@ function ThreeDView(containerDiv, parent) {
 		o.resize();
 		$(window).resize(o.resize);
 		o.viewer.loadScene(function(){
+			/* var panOrbit = o.viewer.addControl("BIMSURFER.Control.PickFlyOrbit");
+			viewer.addControl(panOrbit);
+			panOrbit.activate(); */
 			var clickSelect = o.viewer.getControl("BIMSURFER.Control.ClickSelect");
 			clickSelect.activate();
 			clickSelect.events.register('select', o.nodeSelected);
@@ -50,9 +53,11 @@ function ThreeDView(containerDiv, parent) {
 			return;
 		}
 		o.selectedId = id;
+		
 		// todo use groupid		
 		var sceneJsNode = o.viewer.scene.findNode(id);
 		if (sceneJsNode != null) {
+			window.alert(id);
 			sceneJsNode.nodeId = sceneJsNode.id;
 			o.viewer.getControl("BIMSURFER.Control.ClickSelect").pick(sceneJsNode);
 		}
