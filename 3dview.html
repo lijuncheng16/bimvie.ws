@@ -14,6 +14,7 @@
 	</div>
 	<div id="viewport"></div>
 	<div id="sensor"></div>
+	
 </div>
 <script>
 function ThreeDView(containerDiv, parent) {
@@ -66,6 +67,7 @@ function ThreeDView(containerDiv, parent) {
 		if (sceneJsNode != null) {
 			window.alert(id); 
 			$("#sensor").text($.param(sensorObj));
+			//alert($(document.applets[0]);
 		// TODO feed sensor data here
 			sceneJsNode.nodeId = sceneJsNode.id;
 			o.viewer.getControl("BIMSURFER.Control.ClickSelect").pick(sceneJsNode);
