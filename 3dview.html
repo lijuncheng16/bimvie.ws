@@ -60,13 +60,42 @@ function ThreeDView(containerDiv, parent) {
 		if (o.selectedId == id) {
 			return;
 		}
+	
 		o.selectedId = id;
+		
+	Object.prototype.getKeyByValue = function( value ) {
+		    for( var prop in this ) {
+		        if( this.hasOwnProperty( prop ) ) {
+		             if( this[ prop ] === value )
+		                 return prop;
+		        }
+		    }
+	}
+		var roomMap = {
+		   room214: 10748534,
+		   room219: 10879606,
+		   room224: 11600502,
+		   room220: 11862646,
+		   room202: 11731574,
+		   room205: 11141750,
+		   room206: 11469430,
+		   room203: 10945142,
+		   room212: 11207286,
+		   room208: 11338358,
+		   room222: 11403894,
+		   staircase1: 11272822,
+		   staircase2: 11010678,
+		   powerbox: 11666038,
+		   corridor: 11797110,
+		   elevator: 10814070
+		}; 
 		
 		// todo use groupid		
 		var sceneJsNode = o.viewer.scene.findNode(id);
 		if (sceneJsNode != null) {
-			window.alert(id); 
-			$("#sensor").text($.param(sensorObj));
+			window.alert(roomMap.getKeyByValue(id)); 
+			//window.alert(id); 
+			//$("#sensor").text($.param(sensorObj));
 			//alert($(document.applets[0]);
 		// TODO feed sensor data here
 			sceneJsNode.nodeId = sceneJsNode.id;
@@ -112,7 +141,16 @@ function ThreeDView(containerDiv, parent) {
 			var matrix = threeDObject.nodes[0];
 			var geometryNode = matrix.nodes[0];
 			var material = BIMSURFER.Constants.materials[object.getType()];
-			// Hack to get the roof to be red.....
+			// Hack to change the color
+			if (object.oid == 11207286){
+				material = BIMSURFER.Constants.materials["CoolSpace"];
+			}
+			if (object.oid == 11010678 || object.oid == 11272822){
+				material = BIMSURFER.Constants.materials["HotSpace"];
+			}
+			if (object.oid == 10945142 || object.oid == 10748534){
+				material = BIMSURFER.Constants.materials["MedSpace"];
+			}
 			if (object.getType() == "IfcSlab") {
 				if (object.getPredefinedType() == "ROOF") {
 					material = BIMSURFER.Constants.materials["IfcRoof"];
@@ -217,7 +255,16 @@ function ThreeDView(containerDiv, parent) {
 						o.changeColorOfObject(object, object.trans.colorOverride);
 					} else {
 						var material = BIMSURFER.Constants.materials[object.getType()];
-						// Hack to get the roof to be red.....
+						// Hack to change the color.....
+						if (object.oid == 11207286){
+							material = BIMSURFER.Constants.materials["CoolSpace"];
+						}
+						if (object.oid == 11010678 || object.oid == 11272822){
+							material = BIMSURFER.Constants.materials["HotSpace"];
+						}
+						if (object.oid == 10945142 || object.oid == 10748534){
+							material = BIMSURFER.Constants.materials["MedSpace"];
+						}
 						if (object.getType() == "IfcSlab") {
 							if (object.getPredefinedType() == "ROOF") {
 								material = BIMSURFER.Constants.materials["IfcRoof"];

@@ -16,6 +16,9 @@
 			<label class="btnProperties btn btn-default">
 				<input type="radio" name="options"/> Properties
 			</label>
+			<label class="btnSensors btn btn-default">
+				<input type="radio" name="options"/> Sensors
+			</label>
 		</div>
 		<div class="panel-body sidespanWrapper">
 			<div class="sidespan">
@@ -24,6 +27,7 @@
 				<div class="classificationWrapper ih"></div>
 				<div class="typesWrapper ih"></div>
 				<div class="layersWrapper ih"></div>
+				<div class="sensorsWrapper ih"></div>
 			</div>
 		</div>
 	</div>
@@ -51,7 +55,9 @@ function Navigator(containerDiv, parent) {
 		promise.chain(load(containerDiv.find(".propertiesWrapper"), "properties.html", function(){
 			o.properties = new Properties($(this), parent, o.selectedObjectId);
 		}));
-		
+		promise.chain(load(containerDiv.find(".sensorsWrapper"), "sensors.html", function(){
+			o.sensors = new Sensors($(this), parent, o.selectedObjectId);
+		}));
 		return promise;
 	};
 	
@@ -73,6 +79,14 @@ function Navigator(containerDiv, parent) {
 			o.sidespan.hide();
 		}
 		o.sidespan = o.properties;
+		o.sidespan.show();
+	};
+	
+	this.showSensors = function(){
+		if (o.sidespan != null) {
+			o.sidespan.hide();
+		}
+		o.sidespan = o.sensors;
 		o.sidespan.show();
 	};
 
@@ -105,5 +119,6 @@ function Navigator(containerDiv, parent) {
 	containerDiv.find(".btnTypes").click(o.showTypes);
 	containerDiv.find(".btnLayers").click(o.showLayers);
 	containerDiv.find(".btnClassifications").click(o.showClassifications);
+	containerDiv.find(".btnSensors").click(o.showSensors);
 }
 </script>

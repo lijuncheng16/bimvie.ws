@@ -1,0 +1,185 @@
+<div class="sensors">
+	<div class="spaced modelLoader">
+		No models loaded
+		<button class="btn btn-default btn-xs btnLoad">Load all</button>
+	</div>
+	<table class="table table-no-top">
+		<thead></thead>
+		<tbody>
+		<input type="text" id="topicName" size="20"/>
+		<button type="button" onclick='showSensors();'>Show Sensors</button><br/>
+		<table id="sensorTable" style="border:1px solid black"></table>
+		</tbody>
+	</table>
+	<!-- <applet code=libsox/testSox.class archive="applets/libsox_applet_demo.jar,applets/smack-3.2.2.jar,applets/smackx-3.2.2.jar,applets/android-support-v4.jar,applet/simple-xml-2.6.9.jar" height=1200 width=800>
+	</applet> --> 
+	
+
+
+<p>Click the button to go to Sensor Andrew Page</p>
+
+	<button onclick="myFunction()">GO TO SENSOR ANDREW</button>
+
+	<script>
+	function myFunction() {
+    	window.open("http://sensor.andrew.cmu.edu");
+	}
+	</script>
+</div>
+<script>
+var xmlHttpRequest = new XMLHttpRequest();
+
+function showSensors() {
+	xmlHttpRequest.open("Get", "http://localhost:8080/SensorAndrewServlet/SensorServlet?topicName="+ document.getElementById('topicName').value, true);
+	xmlHttpRequest.onreadystatechange = processSensors;
+	xmlHttpRequest.send(null);
+}
+
+function processSensors() {
+	if (xmlHttpRequest.readyState == 4 && xmlHttpRequest.status == 200) {
+		var JSONTopicObject = eval('('+ xmlHttpRequest.responseText +')');
+		var headings = [];
+		for (var heading in JSONTopicObject.topic.sensor[0])headings.push(heading);
+		var table = document.getElementById("sensorTable");
+		table.innerHTML = "";
+//		var dom = (new DOMParser()).parseFromString(xmlHttpRequest.responseText, "text/xml");
+//		var sensors = dom.getElementsByTagName("sensor")
+		var headrow = table.insertRow(0);
+		var j = 0;
+		while (j < headings.length) {
+			var headcell = headrow.insertCell(j);
+			headcell.style.backgroundColor = "Beige";
+			headcell.innerHTML = headings[j++];
+		}
+		var sensors = JSONTopicObject.topic.sensor;
+		var i = 0;
+		while(i < sensors.length) {
+			row = table.insertRow(i + 1);
+			k = 0;
+			while (k < headings.length) {
+				cell = row.insertCell(k);
+				cell.innerHTML = sensors[i][headings[k++]];
+		}
+		i++;
+	}
+	}
+}
+
+function Sensors(containerDiv, parent, oid) {
+	var othis = this;
+	othis.selectedId = oid;
+	
+	this.close = function(){};
+	
+	this.selected = function(origin, groupId, id) {
+		if (othis.selectedId == id) {
+			return;
+		}
+		othis.selectedId = id;
+		containerDiv.find("table tbody tr").remove();
+		containerDiv.find("table tbody").append("<tr class=\"noprop\"><td>No properties</td></tr>");
+		var model = parent.models[groupId];
+		model.get(id, function(product){
+			othis.product = product;
+			if (product.oid == id) {
+//				var tr = $("<tr class=\"active\"></tr>");
+//				tr.append("<td>Type</td><td><b>" + stripIfc(product.__type) + "</b></td>");
+//				if (product.name != null) {
+//					tr.append("<td colspan=\"2\"><b>" + product.name + "</b></td>");
+//				}
+//				containerDiv.find("table tbody").append(tr);
+				product.getIsDefinedBy(function(isDefinedBy){
+					if (isDefinedBy.getType() == "IfcRelDefinesByProperties") {
+						isDefinedBy.getRelatingPropertyDefinition(function(propertySet){
+							if (propertySet.getType() == "IfcPropertySet") {
+								containerDiv.find("table tbody tr.noprop").remove();
+								othis.showPropertySet(propertySet);
+							}
+						});
+					}
+				});
+			}
+		});
+	};
+	
+	this.hide = function(){
+		containerDiv.hide();
+	};
+	
+	this.show = function(){
+		containerDiv.show();
+	};
+	
+	this.getSelectedId = function(){
+		return othis.selectedId;
+	};
+	
+	this.unselected = function(groupId, id){
+		containerDiv.find("table tbody tr").remove();
+	};
+	
+	this.showProperty = function (propertySet, property, headerTr){
+		var tr = $("<tr></tr>");
+		tr.attr("oid", property.oid);
+		tr.attr("psetoid", propertySet.oid);
+		headerTr.after(tr);
+		tr.append("<td>" + property.getName() + "</td>");
+		othis.getValue(tr, property);
+	};
+	
+	this.showProperties = function(propertySet, headerTr) {
+		propertySet.getHasProperties(function(property){
+			if (property.getType() == "IfcPropertySingleValue") {
+				othis.showProperty(propertySet, property, headerTr);
+			}
+		});
+	}
+	
+	this.showPropertySet = function(propertySet) {
+		var headerTr = $("<tr class=\"active\"></tr>");
+		headerTr.attr("oid", propertySet.oid);
+		headerTr.attr("uri", propertySet.getName());
+		containerDiv.find("table tbody").append(headerTr);
+		var headerTd = $("<td colspan=\"2\"></td>");
+		headerTr.append(headerTd);
+		headerTd.append("<b>" + propertySet.getName() + "</b>");
+		othis.showProperties(propertySet, headerTr);
+	}
+
+	this.getValue = function(tr, property) {
+		(function (tr) {
+			property.getNominalValue(function(value){
+				var td = $("<td>");
+				var v = value == null ? "" : value._v;
+				var span = $("<span class=\"value nonEditable\">" + v + "</span>");
+				td.append(span);
+				tr.append(td);
+			});
+		} )(tr);
+	}
+	
+	this.loadRevision = function(){
+		containerDiv.find(".modelLoader").hide();
+	};
+	
+	this.unloadRevision = function(){};
+
+	parent.selectListeners.register(othis.selected);
+	parent.unselectListeners.register(othis.unselected);
+	parent.modelLoadedListeners.register(othis.loadRevision);
+	parent.modelUnloadedListeners.register(othis.unloadRevision);
+
+	containerDiv.find(".btnLoad").click(parent.loadModel);
+
+	if (othis.selectedId != null && othis.selectedId != -1) {
+		othis.selected(othis.selectedId);
+	}
+	
+	containerDiv.find(".properties").dblclick(function(){
+		var tr = $("<tr class=\"guid\"></tr>");
+		tr.append("<td colspan=\"2\">" + othis.product.getGlobalId() + "</td>");
+		containerDiv.find(".table tbody").find(".guid").remove();
+		containerDiv.find(".table tbody").append(tr);
+	});
+}
+</script>

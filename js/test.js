@@ -458,4 +458,3 @@ var Project = function(main, project) {
 		}
 	};
 }
-</script>
