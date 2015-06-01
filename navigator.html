@@ -62,7 +62,9 @@ function Navigator(containerDiv, parent) {
 	};
 	
 	this.resize = function(){
-		var height = ($(window).height() - $(".navbar").outerHeight() - containerDiv.find(".navigator .panel-heading").outerHeight() - 57);
+		var width = $(window).width() / 3 - 50;
+		var height = ($(window).height() - $(".navbar").outerHeight() - $(".navbar-header").outerHeight() - containerDiv.find(".navigator .panel-heading").outerHeight());
+		containerDiv.find(".sidespanWrapper").width(width + "px");
 		containerDiv.find(".sidespanWrapper").height(height + "px");
 	};
 
@@ -119,6 +121,11 @@ function Navigator(containerDiv, parent) {
 	containerDiv.find(".btnTypes").click(o.showTypes);
 	containerDiv.find(".btnLayers").click(o.showLayers);
 	containerDiv.find(".btnClassifications").click(o.showClassifications);
+<<<<<<< HEAD
 	containerDiv.find(".btnSensors").click(o.showSensors);
+=======
+	
+//	$(window).resize(o.resize);
+>>>>>>> opensourceBIM/master
 }
 </script>
