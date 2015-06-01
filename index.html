@@ -84,6 +84,7 @@
 				       		    baseJsDir + "plugins/pluginmanager.js?_v=" + Global.version, 
 				       		    baseJsDir + "plugins/relaticsplugin.js?_v=" + Global.version,
 				       		    baseJsDir + "papaparse.min.js?_v=" + Global.version
+				       		 	/* baseJsDir + "node-xmpp-browser.js?_v=" + Global.version */
 				    	 	];
 				    		
 				    		if (Settings.useBimSurfer()) {
@@ -388,6 +389,8 @@
 		};
 		myRequest.open("GET", Global.baseDir + "plugin.version", true);
 		myRequest.send();
+		/* var conf = { websocket: {url: "127.0.0.1"} }
+		var client = new XMPP.Client(conf); */
 	</script>
   </body>
 </html>
