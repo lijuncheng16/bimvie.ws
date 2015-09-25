@@ -69,6 +69,7 @@
 				       		    baseJsDir + "jquery.cookie.js?_v=" + Global.version, 
 				       		    baseJsDir + "jquery.numeric.js?_v=" + Global.version, 
 				       		    baseJsDir + "jquery.enterpress.js?_v=" + Global.version, 
+				       		    baseJsDir + "jquery.dragbetter.js?_v=" + Global.version, 
 				       		    baseJsDir + "base64unicode.js?_v=" + Global.version, 
 				       		    baseJsDir + "jquery.ui.widget.js?_v=" + Global.version, 
 				       		    baseJsDir + "String.js?_v=" + Global.version, 
@@ -78,7 +79,6 @@
 				       		    baseJsDir + "sha256.js?_v=" + Global.version, 
 				       		    baseJsDir + "utils.js?_v=" + Global.version, 
 				       		    baseJsDir + "formatters.js?_v=" + Global.version, 
-				       		    baseJsDir + "jquery.fileupload.js?_v=" + Global.version, 
 				       		    baseJsDir + "jquery.scrollto.js?_v=" + Global.version, 
 				       		    baseJsDir + "pagechanger.js?_v=" + Global.version, 
 				       		    baseJsDir + "plugins/pluginmanager.js?_v=" + Global.version, 
@@ -122,7 +122,9 @@
 				    				cache: true
 				    			});
 
-				    			SceneJS.configure({ pluginPath: baseJsDir + "bimsurfer/lib/scenejs/plugins" });
+				    			if (Settings.useBimSurfer()) {
+					    			SceneJS.configure({ pluginPath: baseJsDir + "bimsurfer/lib/scenejs/plugins", statusPopups: false});
+				    			}
 				    			
 				    			var jQueryLoad = $.fn.load;
 				    			$.fn.load = function(url, params, callback) {
