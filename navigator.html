@@ -16,8 +16,13 @@
 			<label class="btnProperties btn btn-default">
 				<input type="radio" name="options"/> Properties
 			</label>
+<<<<<<< HEAD
 			<label class="btnSensors btn btn-default">
 				<input type="radio" name="options"/> Sensors
+=======
+			<label class="btnQuery btn btn-default">
+				<input type="radio" name="options"/> Query
+>>>>>>> opensourceBIM/master
 			</label>
 		</div>
 		<div class="panel-body sidespanWrapper">
@@ -27,7 +32,11 @@
 				<div class="classificationWrapper ih"></div>
 				<div class="typesWrapper ih"></div>
 				<div class="layersWrapper ih"></div>
+<<<<<<< HEAD
 				<div class="sensorsWrapper ih"></div>
+=======
+				<div class="queryWrapper ih"></div>
+>>>>>>> opensourceBIM/master
 			</div>
 		</div>
 	</div>
@@ -35,9 +44,9 @@
 <script>
 function Navigator(containerDiv, parent) {
 	var o = this;
-
+	
 	this.load = function(){
-		var promise = new Promise();
+		var promise = new window.BimServerApiPromise();
 		promise.chain(load(containerDiv.find(".projectTreeWrapper"), "projecttree.html", function(){
 			o.projecttree = new ProjectTree($(this), parent, {}, o.selectedObjectId);
 			o.sidespan = o.projecttree;
@@ -55,9 +64,16 @@ function Navigator(containerDiv, parent) {
 		promise.chain(load(containerDiv.find(".propertiesWrapper"), "properties.html", function(){
 			o.properties = new Properties($(this), parent, o.selectedObjectId);
 		}));
+<<<<<<< HEAD
 		promise.chain(load(containerDiv.find(".sensorsWrapper"), "sensors.html", function(){
 			o.sensors = new Sensors($(this), parent, o.selectedObjectId);
 		}));
+=======
+		promise.chain(load(containerDiv.find(".queryWrapper"), "query2.html", function(){
+			o.query = new Query2($(this), parent, o.selectedObjectId);
+		}));
+		
+>>>>>>> opensourceBIM/master
 		return promise;
 	};
 	
@@ -107,6 +123,14 @@ function Navigator(containerDiv, parent) {
 		o.sidespan = o.layers;
 		o.sidespan.show();
 	};
+
+	this.showQuery = function(){
+		if (o.sidespan != null) {
+			o.sidespan.hide();
+		}
+		o.sidespan = o.query;
+		o.sidespan.show();
+	};
 	
 	this.showClassifications = function(){
 		if (o.sidespan != null) {
@@ -122,8 +146,12 @@ function Navigator(containerDiv, parent) {
 	containerDiv.find(".btnLayers").click(o.showLayers);
 	containerDiv.find(".btnClassifications").click(o.showClassifications);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	containerDiv.find(".btnSensors").click(o.showSensors);
 =======
+=======
+	containerDiv.find(".btnQuery").click(o.showQuery);
+>>>>>>> opensourceBIM/master
 	
 //	$(window).resize(o.resize);
 >>>>>>> opensourceBIM/master

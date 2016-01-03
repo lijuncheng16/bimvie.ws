@@ -472,3 +472,12 @@ div.right {
 .uploadarea {
 	margin-bottom: 0;
 }
+
+input[type="file"].file {
+	display: none;
+}
+
+.query2 {
+	padding-left: 10px;
+	padding-top: 10px;
+}

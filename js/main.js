@@ -241,6 +241,9 @@ function stripHttps(url) {
 var SizePrefixes = ' KMGTPEZYXWVU';
 
 function getHumanSize(bytes) {
+	if (bytes == 0) {
+		return "0 bytes";
+	}
 	var s = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'];
     var e = Math.floor(Math.log(bytes) / Math.log(1024));
     var result = (bytes / Math.pow(1024, e)).toFixed(2);
@@ -276,7 +279,7 @@ function formatLogState(state) {
 }
 
 function load(element, url, constructor) {
-	var promise = new Promise();
+	var promise = new window.BimServerApiPromise();
 	element.load(url, function(){
 		var res = constructor.call(element);
 		if (res instanceof Promise) {
