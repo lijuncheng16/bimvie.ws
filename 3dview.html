@@ -26,6 +26,7 @@ function ThreeDView(containerDiv, parent) {
 	
 	this.load = function(){
 <<<<<<< HEAD
+<<<<<<< HEAD
 		var promise = new Promise();
 	    sensorObj = new Object();
 	    sensorObj.temperature = "70";
@@ -33,6 +34,9 @@ function ThreeDView(containerDiv, parent) {
 	    sensorObj.noise = "10db";
 	    sensorObj.light = "bright"; 
 	    
+=======
+		var promise = new window.BimServerApiPromise();
+>>>>>>> opensourceBIM/master
 =======
 		var promise = new window.BimServerApiPromise();
 >>>>>>> opensourceBIM/master
@@ -262,6 +266,7 @@ function ThreeDView(containerDiv, parent) {
 						}
 					} else {
 <<<<<<< HEAD
+<<<<<<< HEAD
 						var material = BIMSURFER.Constants.materials[object.getType()];
 						// Hack to change the color.....
 						if (object.oid == 11207286){
@@ -277,6 +282,8 @@ function ThreeDView(containerDiv, parent) {
 							if (object.getPredefinedType() == "ROOF") {
 								material = BIMSURFER.Constants.materials["IfcRoof"];
 =======
+=======
+>>>>>>> opensourceBIM/master
 						if (object.trans.colorOverride != null) {
 							o.changeColorOfObject(object, object.trans.colorOverride);
 						} else {
@@ -286,6 +293,9 @@ function ThreeDView(containerDiv, parent) {
 								if (object.getPredefinedType() == "ROOF") {
 									material = BIMSURFER.Constants.materials["IfcRoof"];
 								}
+<<<<<<< HEAD
+>>>>>>> opensourceBIM/master
+=======
 >>>>>>> opensourceBIM/master
 							}
 							if (material == null) {

@@ -17,8 +17,13 @@
 				<input type="radio" name="options"/> Properties
 			</label>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<label class="btnSensors btn btn-default">
 				<input type="radio" name="options"/> Sensors
+=======
+			<label class="btnQuery btn btn-default">
+				<input type="radio" name="options"/> Query
+>>>>>>> opensourceBIM/master
 =======
 			<label class="btnQuery btn btn-default">
 				<input type="radio" name="options"/> Query
@@ -33,7 +38,11 @@
 				<div class="typesWrapper ih"></div>
 				<div class="layersWrapper ih"></div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<div class="sensorsWrapper ih"></div>
+=======
+				<div class="queryWrapper ih"></div>
+>>>>>>> opensourceBIM/master
 =======
 				<div class="queryWrapper ih"></div>
 >>>>>>> opensourceBIM/master
@@ -65,10 +74,13 @@ function Navigator(containerDiv, parent) {
 			o.properties = new Properties($(this), parent, o.selectedObjectId);
 		}));
 <<<<<<< HEAD
+<<<<<<< HEAD
 		promise.chain(load(containerDiv.find(".sensorsWrapper"), "sensors.html", function(){
 			o.sensors = new Sensors($(this), parent, o.selectedObjectId);
 		}));
 =======
+=======
+>>>>>>> opensourceBIM/master
 		promise.chain(load(containerDiv.find(".queryWrapper"), "query2.html", function(){
 			o.query = new Query2($(this), parent, o.selectedObjectId);
 		}));
@@ -147,8 +159,12 @@ function Navigator(containerDiv, parent) {
 	containerDiv.find(".btnClassifications").click(o.showClassifications);
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	containerDiv.find(".btnSensors").click(o.showSensors);
 =======
+=======
+	containerDiv.find(".btnQuery").click(o.showQuery);
+>>>>>>> opensourceBIM/master
 =======
 	containerDiv.find(".btnQuery").click(o.showQuery);
 >>>>>>> opensourceBIM/master
